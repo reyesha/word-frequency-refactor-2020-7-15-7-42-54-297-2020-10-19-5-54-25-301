@@ -23,6 +23,4 @@ public class WordFrequencyGame {
         new HashSet<>(words).stream().map(word -> new WordInfo(word,Collections.frequency(words,word))).forEachOrdered(wordInfos::add);
         return wordInfos;
     }
-
-
 }
