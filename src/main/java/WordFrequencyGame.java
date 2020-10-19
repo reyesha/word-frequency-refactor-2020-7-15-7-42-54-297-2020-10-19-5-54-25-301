@@ -5,14 +5,10 @@ public class WordFrequencyGame {
     public static final String WHITE_SPACES = "\\s+";
 
     public String getResult(String sentence){
-
-                List<WordInfo> wordInfos = calculateWordFrequency(sentence);
-
-                wordInfos.sort((firstWord, secondWord) -> secondWord.getWordCount() - firstWord.getWordCount());
-
-                StringJoiner joiner = getStringJoiner(wordInfos);
-                return joiner.toString();
-
+        List<WordInfo> wordInfos = calculateWordFrequency(sentence);
+        wordInfos.sort((firstWord, secondWord) -> secondWord.getWordCount() - firstWord.getWordCount());
+        StringJoiner joiner = getStringJoiner(wordInfos);
+        return joiner.toString();
     }
 
     private StringJoiner getStringJoiner(List<WordInfo> wordInfos) {
