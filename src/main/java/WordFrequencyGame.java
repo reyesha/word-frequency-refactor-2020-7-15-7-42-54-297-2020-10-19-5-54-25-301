@@ -6,9 +6,13 @@ public class WordFrequencyGame {
 
     public String getResult(String sentence){
         List<WordInfo> wordInfos = calculateWordFrequency(sentence);
-        wordInfos.sort((firstWord, secondWord) -> secondWord.getWordCount() - firstWord.getWordCount());
+        sortList(wordInfos);
         StringJoiner joiner = getStringJoiner(wordInfos);
         return joiner.toString();
+    }
+
+    private void sortList(List<WordInfo> wordInfos) {
+        wordInfos.sort((firstWord, secondWord) -> secondWord.getWordCount() - firstWord.getWordCount());
     }
 
     private StringJoiner getStringJoiner(List<WordInfo> wordInfos) {
