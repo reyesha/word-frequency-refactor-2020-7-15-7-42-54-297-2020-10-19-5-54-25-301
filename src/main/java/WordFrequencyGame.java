@@ -29,7 +29,7 @@ public class WordFrequencyGame {
                 }
                 worldInfoList = distinctWordInfos;
 
-                worldInfoList.sort((w1, w2) -> w2.getWordCount() - w1.getWordCount());
+                worldInfoList.sort((firstWord, secondWord) -> secondWord.getWordCount() - firstWord.getWordCount());
 
                 StringJoiner joiner = new StringJoiner("\n");
                 for (WorldInfo w : worldInfoList) {
