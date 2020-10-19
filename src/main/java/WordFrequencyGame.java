@@ -3,7 +3,6 @@ import java.util.*;
 public class WordFrequencyGame {
 
     public static final String WHITE_SPACES = "\\s+";
-    public static final int oneWordLength = 1;
 
     public String getResult(String sentence){
 
