@@ -7,21 +7,12 @@ public class WordFrequencyGame {
 
     public String getResult(String sentence){
 
-
-
-
-            try {
                 List<WordInfo> wordInfos = calculateWordFrequency(sentence);
 
                 wordInfos.sort((firstWord, secondWord) -> secondWord.getWordCount() - firstWord.getWordCount());
 
                 StringJoiner joiner = getStringJoiner(wordInfos);
                 return joiner.toString();
-            } catch (Exception e) {
-
-
-                return "Calculate Error";
-            }
 
     }
 
