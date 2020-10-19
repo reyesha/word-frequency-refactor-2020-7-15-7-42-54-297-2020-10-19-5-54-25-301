@@ -1,8 +1,8 @@
-public class Input {
+public class WorldInfo {
     private String value;
     private int count;
 
-    public Input(String w, int i){
+    public WorldInfo(String w, int i){
         this.value =w;
         this.count =i;
     }
