@@ -9,7 +9,7 @@ public class WordFrequencyGame {
 
 
         if (sentence.split(WHITE_SPACES).length == oneWordLength) {
-            return sentence + " 1";
+            return String.format("%s %d", sentence, oneWordLength);
         } else {
 
             try {
