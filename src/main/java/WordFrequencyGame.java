@@ -16,11 +16,7 @@ public class WordFrequencyGame {
 
                 worldInfos.sort((firstWord, secondWord) -> secondWord.getWordCount() - firstWord.getWordCount());
 
-                StringJoiner joiner = new StringJoiner("\n");
-                for (WorldInfo wordInfo : worldInfos) {
-                    String wordInfoLine = String.format("%s %d", wordInfo.getValue(), wordInfo.getWordCount());
-                    joiner.add(wordInfoLine);
-                }
+                StringJoiner joiner = getStringJoiner(worldInfos);
                 return joiner.toString();
             } catch (Exception e) {
 
@@ -29,7 +25,16 @@ public class WordFrequencyGame {
             }
         }
     }
-    
+
+    private StringJoiner getStringJoiner(List<WorldInfo> worldInfos) {
+        StringJoiner joiner = new StringJoiner("\n");
+        for (WorldInfo wordInfo : worldInfos) {
+            String wordInfoLine = String.format("%s %d", wordInfo.getValue(), wordInfo.getWordCount());
+            joiner.add(wordInfoLine);
+        }
+        return joiner;
+    }
+
     private List<WorldInfo> calculateWordFrequency(String sentence) {
         List<String> words = Arrays.asList(sentence.split(WHITE_SPACES));
         List<WorldInfo> worldInfos = new ArrayList<>();
