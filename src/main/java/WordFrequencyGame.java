@@ -12,28 +12,12 @@ public class WordFrequencyGame {
         } else {
 
             try {
+                List<WorldInfo> worldInfos = calculateWordFrequency(inputStr);
 
-                String[] words = inputStr.split(WHITE_SPACES);
-
-                List<WorldInfo> worldInfoList = new ArrayList<>();
-                for (String word : words) {
-                    WorldInfo worldInfo = new WorldInfo(word, 1);
-                    worldInfoList.add(worldInfo);
-                }
-
-                Map<String, List<WorldInfo>> wordInfoMap =getListMap(worldInfoList);
-
-                List<WorldInfo> distinctWordInfos = new ArrayList<>();
-                for (Map.Entry<String, List<WorldInfo>> entry : wordInfoMap.entrySet()){
-                    WorldInfo worldInfo = new WorldInfo(entry.getKey(), entry.getValue().size());
-                    distinctWordInfos.add(worldInfo);
-                }
-                worldInfoList = distinctWordInfos;
-
-                worldInfoList.sort((firstWord, secondWord) -> secondWord.getWordCount() - firstWord.getWordCount());
+                worldInfos.sort((firstWord, secondWord) -> secondWord.getWordCount() - firstWord.getWordCount());
 
                 StringJoiner joiner = new StringJoiner("\n");
-                for (WorldInfo wordInfo : worldInfoList) {
+                for (WorldInfo wordInfo : worldInfos) {
                     String wordInfoLine = String.format("%s %d", wordInfo.getValue(), wordInfo.getWordCount());
                     joiner.add(wordInfoLine);
                 }
@@ -45,24 +29,15 @@ public class WordFrequencyGame {
             }
         }
     }
-
-
-    private Map<String,List<WorldInfo>> getListMap(List<WorldInfo> worldInfoList) {
-        Map<String, List<WorldInfo>> map = new HashMap<>();
-        for (WorldInfo worldInfo : worldInfoList){
-            if (!map.containsKey(worldInfo.getValue())){
-                ArrayList arr = new ArrayList<>();
-                arr.add(worldInfo);
-                map.put(worldInfo.getValue(), arr);
-            }
-
-            else {
-                map.get(worldInfo.getValue()).add(worldInfo);
-            }
+    
+    private List<WorldInfo> calculateWordFrequency(String sentence) {
+        List<String> words = Arrays.asList(sentence.split(WHITE_SPACES));
+        List<WorldInfo> worldInfos = new ArrayList<>();
+        for (String word: new HashSet<>(words)) {
+            int count = Collections.frequency(words, word);
+            worldInfos.add(new WorldInfo(word, count));
         }
-
-
-        return map;
+        return worldInfos;
     }
 
 
